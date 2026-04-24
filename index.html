@@ -18,7 +18,6 @@ html,body{
   height:100%;
 }
 
-/* ROOT */
 body{
   background:#020817;
   color:#fff;
@@ -28,14 +27,12 @@ body{
   overflow:hidden;
 }
 
-/* PARTICLES */
 #particles{
   position:fixed;
   inset:0;
   z-index:0;
 }
 
-/* TOP */
 .topbar{
   display:flex;
   justify-content:center;
@@ -53,7 +50,6 @@ body{
   cursor:pointer;
 }
 
-/* MENU */
 .menu{
   flex:1;
   min-height:0;
@@ -65,7 +61,6 @@ body{
   overflow-y:auto;
 }
 
-/* CARD */
 .card{
   width:100%;
   height:110px;
@@ -74,13 +69,8 @@ body{
   justify-content:space-between;
   align-items:center;
   padding:12px;
-  position:relative;
-  overflow:hidden;
-  cursor:pointer;
-  transition:0.2s;
 }
 
-/* TEXT */
 .left{
   flex:1;
   min-width:0;
@@ -101,9 +91,6 @@ body{
   font-size:11px;
   opacity:0.7;
   margin-top:4px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
 }
 
 .open{
@@ -115,24 +102,19 @@ body{
   width:max-content;
 }
 
-/* ICON */
 .visual{
   width:70px;
   height:70px;
-  flex-shrink:0;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-.visual img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  filter:
-    drop-shadow(0 0 20px currentColor)
-    drop-shadow(0 0 50px currentColor)
-    brightness(1.2);
+.visual svg{
+  width:62px;
+  height:62px;
+  fill:currentColor;
+  filter:drop-shadow(0 0 18px currentColor);
 }
 
 /* COLORS */
@@ -142,54 +124,12 @@ body{
 .c4{background:linear-gradient(135deg,#2b1400,#663300);color:#ff9900}
 .c5{background:linear-gradient(135deg,#001a33,#003366);color:#00ccff}
 
-/* FRAME */
 iframe{
   width:100%;
   height:100%;
   flex:1;
   border:none;
   display:none;
-  z-index:2;
-}
-
-/* TABLET */
-@media(min-width:600px){
-  .menu{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .card{
-    height:140px;
-  }
-
-  .title{
-    font-size:16px;
-  }
-
-  .visual{
-    width:90px;
-    height:90px;
-  }
-}
-
-/* DESKTOP */
-@media(min-width:1024px){
-  .menu{
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  }
-
-  .card{
-    height:180px;
-  }
-
-  .title{
-    font-size:18px;
-  }
-
-  .visual{
-    width:120px;
-    height:120px;
-  }
 }
 </style>
 </head>
@@ -204,6 +144,7 @@ iframe{
 
 <div class="menu" id="menu">
 
+<!-- STOK -->
 <div class="card c1" onclick="openSite('https://bilaltektas.github.io/stok-miktarlari/')">
   <div class="left">
     <div class="title">STOK & MAL KABUL</div>
@@ -211,10 +152,11 @@ iframe{
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/679/679720.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/679/679720.png" width="60">
   </div>
 </div>
 
+<!-- REÇETE -->
 <div class="card c2" onclick="openSite('https://bilaltektas.github.io/recete_robotu/')">
   <div class="left">
     <div class="title">REÇETE SORGULAMA</div>
@@ -222,21 +164,25 @@ iframe{
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/2784/2784445.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/2784/2784445.png" width="60">
   </div>
 </div>
 
+<!-- 🔥 STOK KODU ASİSTANI (QR SCAN ICON) -->
 <div class="card c3" onclick="openSite('https://bilaltektas.github.io/stok-kodu-asistan-/')">
   <div class="left">
     <div class="title">STOK KODU ASİSTANI</div>
-    <div class="desc">Barcode ve ürün analizi</div>
+    <div class="desc">Barcode & QR Scan</div>
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/483/483947.png">
+    <svg viewBox="0 0 24 24">
+      <path d="M3 3h7v7H3V3zm2 2v3h3V5H5zm9-2h7v7h-7V3zm2 2v3h3V5h-3zM3 14h7v7H3v-7zm2 2v3h3v-3H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm4 0h2v2h-2v-2z"/>
+    </svg>
   </div>
 </div>
 
+<!-- ZAMAN -->
 <div class="card c4" onclick="openSite('https://bilaltektas.github.io/zaman-hesaplama/')">
   <div class="left">
     <div class="title">ÇALIŞMA SÜRESİ</div>
@@ -244,18 +190,21 @@ iframe{
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" width="60">
   </div>
 </div>
 
+<!-- 🔥 LOT TAKİP (NUMBER TAG ICON) -->
 <div class="card c5" onclick="openSite('https://bilaltektas.github.io/lot-no-asistan/')">
   <div class="left">
     <div class="title">LOT TAKİP</div>
-    <div class="desc">Ürün ve parti izleme sistemi</div>
+    <div class="desc">Batch & Numara Takibi</div>
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048946.png">
+    <svg viewBox="0 0 24 24">
+      <path d="M20 10V4h-6l-2 2H4v14h16V10zm-9 7H6v-2h5v2zm0-4H6v-2h5v2zm7 4h-5v-2h5v2zm0-4h-5v-2h5v2z"/>
+    </svg>
   </div>
 </div>
 
@@ -278,43 +227,6 @@ function goHome(){
   frame.src='';
   menu.style.display='grid';
 }
-
-/* PARTICLES */
-const c=document.getElementById('particles');
-const ctx=c.getContext('2d');
-
-function resize(){
-  c.width=innerWidth;
-  c.height=innerHeight;
-}
-resize();
-
-let p=[...Array(50)].map(()=>({
-  x:Math.random()*innerWidth,
-  y:Math.random()*innerHeight,
-  vx:(Math.random()-0.5)*0.5,
-  vy:(Math.random()-0.5)*0.5
-}));
-
-function anim(){
-  ctx.clearRect(0,0,c.width,c.height);
-  ctx.fillStyle="#00eaff";
-
-  p.forEach(o=>{
-    o.x+=o.vx;
-    o.y+=o.vy;
-
-    if(o.x<0||o.x>c.width)o.vx*=-1;
-    if(o.y<0||o.y>c.height)o.vy*=-1;
-
-    ctx.fillRect(o.x,o.y,2,2);
-  });
-
-  requestAnimationFrame(anim);
-}
-anim();
-
-onresize=resize;
 </script>
 
 </body>
