@@ -14,27 +14,22 @@ body{
   height:100vh;
   display:flex;
   flex-direction:column;
+  overflow:hidden;
 }
 
-/* TOPBAR */
+/* PARTICLES */
+#particles{
+  position:fixed;
+  inset:0;
+  z-index:0;
+}
+
+/* TOP */
 .topbar{
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 20px;
-}
-
-.nav-btn{
-  padding:12px 22px;
-  border-radius:14px;
-  border:1px solid #00eaff;
-  color:#00eaff;
-  cursor:pointer;
-}
-
-.nav-btn.purple{
-  border-color:#c77dff;
-  color:#c77dff;
+  justify-content:center;
+  padding:15px;
+  z-index:2;
 }
 
 .nav-center{
@@ -43,154 +38,93 @@ body{
   border:1px solid #00eaff;
   box-shadow:0 0 25px #00eaff;
   font-weight:800;
+  cursor:pointer;
 }
 
-/* MENU */
+/* GRID */
 .menu{
   flex:1;
-  overflow-y:auto;
-  display:flex;
-  flex-direction:column;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
   gap:20px;
   padding:20px;
+  z-index:2;
+  overflow:auto;
 }
 
 /* CARD */
 .card{
-  width:100%;
-  min-height:220px;
-  border-radius:24px;
+  height:200px;
+  border-radius:22px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:30px;
+  padding:20px;
   position:relative;
   overflow:hidden;
   cursor:pointer;
-  transition:0.4s;
+  transition:0.2s;
+  transform-style:preserve-3d;
 }
 
 .card:hover{
-  transform:scale(1.01);
-  box-shadow:0 0 80px currentColor;
+  box-shadow:0 0 60px currentColor;
 }
 
-.card:active{
-  transform:scale(0.98);
-}
-
-.card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent);
-  opacity:0;
-  transition:0.4s;
-}
-
-.card:hover::before{
-  opacity:1;
-}
-
-/* LEFT */
-.left{max-width:55%}
-
-.num{
-  font-size:42px;
-  font-weight:900;
-}
-
-.dots{display:flex;gap:5px;margin-top:6px}
-.dots span{
-  width:6px;height:6px;background:currentColor;border-radius:50%;
+/* CONTENT */
+.left{
+  max-width:60%;
 }
 
 .title{
-  font-size:28px;
+  font-size:20px;
   font-weight:900;
-  margin-top:10px;
 }
 
 .desc{
-  font-size:15px;
+  font-size:13px;
   opacity:0.7;
-  margin-top:8px;
+  margin-top:6px;
 }
 
-/* BUTTON */
 .open{
-  margin-top:18px;
-  padding:10px 26px;
-  border-radius:30px;
-  border:2px solid currentColor;
-  background:transparent;
-  font-weight:700;
-  box-shadow:0 0 15px currentColor inset;
+  margin-top:12px;
+  padding:8px 18px;
+  border-radius:20px;
+  border:1px solid currentColor;
 }
 
-/* VISUAL */
+/* ICON (ULTRA) */
 .visual{
-  width:240px;
-  height:240px;
+  width:120px;
+  height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .visual img{
   width:100%;
   height:100%;
   object-fit:contain;
-  filter:drop-shadow(0 0 50px currentColor) brightness(1.2);
+  filter:
+    drop-shadow(0 0 20px currentColor)
+    drop-shadow(0 0 50px currentColor)
+    drop-shadow(0 0 80px currentColor)
+    brightness(1.3) contrast(1.2);
+  transition:0.3s;
 }
 
-/* ARROW */
-.arrow{
-  position:absolute;
-  right:25px;
-  bottom:25px;
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  border:2px solid currentColor;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
+.card:hover .visual img{
+  transform:scale(1.15) rotate(2deg);
 }
 
 /* COLORS */
-.c1{
-  background:
-  radial-gradient(circle at 80% 50%, rgba(0,255,255,0.25), transparent 60%),
-  linear-gradient(135deg,#021b2f,#003b5c);
-  color:#00eaff;
-}
-
-.c2{
-  background:
-  radial-gradient(circle at 80% 50%, rgba(255,0,255,0.25), transparent 60%),
-  linear-gradient(135deg,#1a0033,#3a0066);
-  color:#ff5cff;
-}
-
-.c3{
-  background:
-  radial-gradient(circle at 80% 50%, rgba(0,255,120,0.25), transparent 60%),
-  linear-gradient(135deg,#002b1c,#004d2e);
-  color:#00ff99;
-}
-
-.c4{
-  background:
-  radial-gradient(circle at 80% 50%, rgba(255,140,0,0.25), transparent 60%),
-  linear-gradient(135deg,#2b1400,#663300);
-  color:#ff9900;
-}
-
-.c5{
-  background:
-  radial-gradient(circle at 80% 50%, rgba(0,180,255,0.25), transparent 60%),
-  linear-gradient(135deg,#001a33,#003366);
-  color:#00ccff;
-}
+.c1{background:linear-gradient(135deg,#021b2f,#003b5c);color:#00eaff}
+.c2{background:linear-gradient(135deg,#1a0033,#3a0066);color:#ff5cff}
+.c3{background:linear-gradient(135deg,#002b1c,#004d2e);color:#00ff99}
+.c4{background:linear-gradient(135deg,#2b1400,#663300);color:#ff9900}
+.c5{background:linear-gradient(135deg,#001a33,#003366);color:#00ccff}
 
 /* IFRAME */
 iframe{
@@ -199,94 +133,86 @@ iframe{
   border:none;
   display:none;
   flex:1;
-  background:#000;
+  z-index:2;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .card{height:auto;flex-direction:column;align-items:flex-start}
+  .visual{margin-top:10px}
+  .left{max-width:100%}
 }
 </style>
 </head>
 
 <body>
 
+<canvas id="particles"></canvas>
+
 <div class="topbar">
-  <div class="nav-btn" onclick="goHome()">← GERİ</div>
-  <div class="nav-center">🏠 ANA MENÜ</div>
-  <div class="nav-btn purple">🏠 ANASAYFA</div>
+  <div class="nav-center" onclick="goHome()">🏠 ANASAYFA</div>
 </div>
 
 <div class="menu" id="menu">
 
-<!-- 1 -->
+<!-- STOK -->
 <div class="card c1" onclick="openSite('https://bilaltektas.github.io/stok-miktarlari/')">
   <div class="left">
-    <div class="num">01</div>
-    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
     <div class="title">STOK MİKTARLARI VE MAL KABUL</div>
-    <div class="desc">Stok miktarlarını görüntüle ve mal kabul işlemlerini yap</div>
+    <div class="desc">Depo, giriş ve stok yönetimi</div>
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/679/679720.png">
   </div>
-  <div class="arrow">›</div>
 </div>
 
-<!-- 2 -->
+<!-- REÇETE -->
 <div class="card c2" onclick="openSite('https://bilaltektas.github.io/recete_robotu/')">
   <div class="left">
-    <div class="num">02</div>
-    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
     <div class="title">REÇETE SORGULAMA</div>
-    <div class="desc">Reçeteleri hızlı ve kolay şekilde sorgula</div>
+    <div class="desc">Formül ve üretim analizleri</div>
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/2784/2784445.png">
   </div>
-  <div class="arrow">›</div>
 </div>
 
-<!-- 3 -->
+<!-- STOK KODU -->
 <div class="card c3" onclick="openSite('https://bilaltektas.github.io/stok-kodu-asistan-/')">
   <div class="left">
-    <div class="num">03</div>
-    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
     <div class="title">STOK KODU ASİSTANI</div>
-    <div class="desc">Stok kodlarını sorgula ve detaylı bilgilere ulaş</div>
+    <div class="desc">Barcode ve ürün analizi</div>
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/483/483361.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/483/483947.png">
   </div>
-  <div class="arrow">›</div>
 </div>
 
-<!-- 4 -->
+<!-- SÜRE -->
 <div class="card c4" onclick="openSite('https://bilaltektas.github.io/zaman-hesaplama/')">
   <div class="left">
-    <div class="num">04</div>
-    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
-    <div class="title">ÇALIŞMA SÜRESİ HESAPLAMA</div>
-    <div class="desc">Çalışma süresini hesapla ve raporla</div>
+    <div class="title">ÇALIŞMA SÜRESİ</div>
+    <div class="desc">Zaman ve vardiya hesaplama</div>
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/2972/2972531.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png">
   </div>
-  <div class="arrow">›</div>
 </div>
 
-<!-- 5 -->
+<!-- LOT -->
 <div class="card c5" onclick="openSite('https://bilaltektas.github.io/lot-no-asistan/')">
   <div class="left">
-    <div class="num">05</div>
-    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
-    <div class="title">LOT NUMARASI EŞLEŞTİRME</div>
-    <div class="desc">Lot numaralarını eşleştir ve kontrol et</div>
+    <div class="title">LOT TAKİP</div>
+    <div class="desc">Ürün ve parti izleme sistemi</div>
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/4248/4248443.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048946.png">
   </div>
-  <div class="arrow">›</div>
 </div>
 
 </div>
@@ -294,23 +220,58 @@ iframe{
 <iframe id="frame"></iframe>
 
 <script>
-function openSite(url){
-  const menu = document.getElementById('menu');
-  const frame = document.getElementById('frame');
+const menu=document.getElementById('menu');
+const frame=document.getElementById('frame');
 
+function openSite(url){
   menu.style.display='none';
   frame.style.display='block';
   frame.src=url;
 }
 
 function goHome(){
-  const menu = document.getElementById('menu');
-  const frame = document.getElementById('frame');
-
   frame.style.display='none';
   frame.src='';
-  menu.style.display='flex';
+  menu.style.display='grid';
 }
+
+/* TILT */
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=e.clientX-r.left;
+    const y=e.clientY-r.top;
+    card.style.transform=`rotateX(${-(y-r.height/2)/25}deg) rotateY(${(x-r.width/2)/25}deg)`;
+  });
+  card.addEventListener('mouseleave',()=>card.style.transform='rotateX(0) rotateY(0)');
+});
+
+/* PARTICLES */
+const c=document.getElementById('particles');
+const ctx=c.getContext('2d');
+function resize(){c.width=innerWidth;c.height=innerHeight}
+resize();
+
+let p=[...Array(60)].map(()=>({
+x:Math.random()*c.width,
+y:Math.random()*c.height,
+vx:(Math.random()-0.5)*0.5,
+vy:(Math.random()-0.5)*0.5
+}));
+
+function anim(){
+ctx.clearRect(0,0,c.width,c.height);
+ctx.fillStyle="#00eaff";
+p.forEach(o=>{
+o.x+=o.vx;o.y+=o.vy;
+if(o.x<0||o.x>c.width)o.vx*=-1;
+if(o.y<0||o.y>c.height)o.vy*=-1;
+ctx.fillRect(o.x,o.y,2,2);
+});
+requestAnimationFrame(anim);
+}
+anim();
+onresize=resize;
 </script>
 
 </body>
