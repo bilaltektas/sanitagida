@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uygulama Merkezi</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+
+body{
+  height:100vh;
+  background:#050c18;
+  color:#fff;
+  overflow:hidden;
+}
+
+/* TOP BAR */
+.topbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+  z-index:50;
+}
+
+.btn{
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{transform:scale(1.08);box-shadow:0 0 15px rgba(0,255,255,0.5)}
+
+/* MENU */
+.menu{
+  position:absolute;
+  top:60px;
+  bottom:0;
+  left:0;
+  right:0;
+  overflow-y:auto;
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.card{
+  border-radius:20px;
+  padding:18px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  transition:0.4s;
+}
+
+.card:hover{
+  transform:scale(1.02);
+  box-shadow:0 0 25px currentColor;
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.3),transparent);
+  opacity:0;
+}
+
+.card:hover::after{
+  opacity:1;
+  animation:shine 1s;
+}
+
+@keyframes shine{
+  from{transform:translateX(-100%)}
+  to{transform:translateX(100%)}
+}
+
+.title{font-size:18px;font-weight:700}
+.sub{font-size:13px;opacity:0.7;margin-top:5px}
+
+/* COLORS */
+.c1{background:linear-gradient(135deg,#00c6ff,#0072ff)}
+.c2{background:linear-gradient(135deg,#ff00cc,#3333ff)}
+.c3{background:linear-gradient(135deg,#00ff99,#006600)}
+.c4{background:linear-gradient(135deg,#ff9900,#cc6600)}
+.c5{background:linear-gradient(135deg,#00ccff,#003366)}
+
+/* IFRAME */
+iframe{
+  position:absolute;
+  top:60px;
+  left:0;
+  width:100%;
+  height:calc(100% - 60px);
+  border:none;
+  display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <button class="btn" onclick="goBack()">← Geri</button>
+  <button class="btn" onclick="goHome()">🏠 Ana Menü</button>
+</div>
+
+<div class="menu" id="menu">
+
+  <div class="card c1" onclick="openSite('https://bilaltektas.github.io/stok-miktarlari/')">
+    <div class="title">STOK MİKTARLARI VE MAL KABUL</div>
+    <div class="sub">Stokları görüntüle ve mal kabul yap</div>
+  </div>
+
+  <div class="card c2" onclick="openSite('https://bilaltektas.github.io/recete_robotu/')">
+    <div class="title">REÇETE SORGULAMA</div>
+    <div class="sub">Reçeteleri hızlıca analiz et</div>
+  </div>
+
+  <div class="card c3" onclick="openSite('https://bilaltektas.github.io/stok-kodu-asistan-/')">
+    <div class="title">STOK KODU ASİSTANI</div>
+    <div class="sub">Kodları sorgula ve detay gör</div>
+  </div>
+
+  <div class="card c4" onclick="openSite('https://bilaltektas.github.io/zaman-hesaplama/')">
+    <div class="title">ÇALIŞMA SÜRESİ</div>
+    <div class="sub">Süre hesapla ve raporla</div>
+  </div>
+
+  <div class="card c5" onclick="openSite('https://bilaltektas.github.io/lot-no-asistan/')">
+    <div class="title">LOT EŞLEŞTİRME</div>
+    <div class="sub">Lot kontrol ve eşleşme</div>
+  </div>
+
+</div>
+
+<iframe id="frame"></iframe>
+
+<script>
+let historyStack=[];
+
+function openSite(url){
+  document.getElementById('menu').style.display='none';
+  const frame=document.getElementById('frame');
+  frame.style.display='block';
+  frame.src=url;
+  historyStack.push(url);
+}
+
+function goHome(){
+  document.getElementById('menu').style.display='flex';
+  const frame=document.getElementById('frame');
+  frame.style.display='none';
+  frame.src='';
+  historyStack=[];
+}
+
+function goBack(){
+  const frame=document.getElementById('frame');
+
+  try{
+    frame.contentWindow.history.back();
+  }catch(e){
+    if(historyStack.length>1){
+      historyStack.pop();
+      frame.src=historyStack[historyStack.length-1];
+    }
+  }
+}
+</script>
+
+</body>
+</html>
