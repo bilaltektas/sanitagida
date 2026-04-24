@@ -14,7 +14,6 @@ body{
   height:100vh;
   display:flex;
   flex-direction:column;
-  overflow:hidden;
 }
 
 /* TOPBAR */
@@ -23,7 +22,6 @@ body{
   justify-content:space-between;
   align-items:center;
   padding:15px 20px;
-  z-index:2;
 }
 
 .nav-btn{
@@ -60,7 +58,7 @@ body{
 /* CARD */
 .card{
   width:100%;
-  min-height:200px;
+  min-height:220px;
   border-radius:24px;
   display:flex;
   justify-content:space-between;
@@ -81,7 +79,6 @@ body{
   transform:scale(0.98);
 }
 
-/* SHINE EFFECT */
 .card::before{
   content:"";
   position:absolute;
@@ -101,7 +98,6 @@ body{
 .num{
   font-size:42px;
   font-weight:900;
-  opacity:0.9;
 }
 
 .dots{display:flex;gap:5px;margin-top:6px}
@@ -130,22 +126,19 @@ body{
   background:transparent;
   font-weight:700;
   box-shadow:0 0 15px currentColor inset;
-  display:inline-block;
 }
 
 /* VISUAL */
 .visual{
-  width:220px;
-  height:220px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width:240px;
+  height:240px;
 }
 
 .visual img{
   width:100%;
+  height:100%;
   object-fit:contain;
-  filter:drop-shadow(0 0 40px currentColor);
+  filter:drop-shadow(0 0 50px currentColor) brightness(1.2);
 }
 
 /* ARROW */
@@ -153,8 +146,8 @@ body{
   position:absolute;
   right:25px;
   bottom:25px;
-  width:44px;
-  height:44px;
+  width:46px;
+  height:46px;
   border-radius:50%;
   border:2px solid currentColor;
   display:flex;
@@ -201,31 +194,27 @@ body{
 
 /* IFRAME */
 iframe{
-  position:absolute;
-  top:0;
-  left:0;
   width:100%;
   height:100%;
   border:none;
   display:none;
-  z-index:1;
+  flex:1;
+  background:#000;
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="nav-btn" onclick="goHome()">← GERİ</div>
   <div class="nav-center">🏠 ANA MENÜ</div>
   <div class="nav-btn purple">🏠 ANASAYFA</div>
 </div>
 
-<!-- MENU -->
 <div class="menu" id="menu">
 
-<!-- CARD 1 -->
+<!-- 1 -->
 <div class="card c1" onclick="openSite('https://bilaltektas.github.io/stok-miktarlari/')">
   <div class="left">
     <div class="num">01</div>
@@ -235,12 +224,12 @@ iframe{
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png">
   </div>
   <div class="arrow">›</div>
 </div>
 
-<!-- CARD 2 -->
+<!-- 2 -->
 <div class="card c2" onclick="openSite('https://bilaltektas.github.io/recete_robotu/')">
   <div class="left">
     <div class="num">02</div>
@@ -250,12 +239,12 @@ iframe{
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/4149/4149676.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png">
   </div>
   <div class="arrow">›</div>
 </div>
 
-<!-- CARD 3 -->
+<!-- 3 -->
 <div class="card c3" onclick="openSite('https://bilaltektas.github.io/stok-kodu-asistan-/')">
   <div class="left">
     <div class="num">03</div>
@@ -265,12 +254,12 @@ iframe{
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/483/483361.png">
   </div>
   <div class="arrow">›</div>
 </div>
 
-<!-- CARD 4 -->
+<!-- 4 -->
 <div class="card c4" onclick="openSite('https://bilaltektas.github.io/zaman-hesaplama/')">
   <div class="left">
     <div class="num">04</div>
@@ -280,12 +269,12 @@ iframe{
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/2972/2972531.png">
   </div>
   <div class="arrow">›</div>
 </div>
 
-<!-- CARD 5 -->
+<!-- 5 -->
 <div class="card c5" onclick="openSite('https://bilaltektas.github.io/lot-no-asistan/')">
   <div class="left">
     <div class="num">05</div>
@@ -295,29 +284,32 @@ iframe{
     <div class="open">AÇ</div>
   </div>
   <div class="visual">
-    <img src="https://cdn-icons-png.flaticon.com/512/2942/2942789.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/4248/4248443.png">
   </div>
   <div class="arrow">›</div>
 </div>
 
 </div>
 
-<!-- IFRAME -->
 <iframe id="frame"></iframe>
 
 <script>
 function openSite(url){
-  document.getElementById('menu').style.display='none';
+  const menu = document.getElementById('menu');
   const frame = document.getElementById('frame');
+
+  menu.style.display='none';
   frame.style.display='block';
   frame.src=url;
 }
 
 function goHome(){
-  document.getElementById('menu').style.display='flex';
+  const menu = document.getElementById('menu');
   const frame = document.getElementById('frame');
+
   frame.style.display='none';
   frame.src='';
+  menu.style.display='flex';
 }
 </script>
 
