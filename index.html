@@ -3,61 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Uygulama Merkezi</title>
+<title>AI Dashboard PRO</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
 
 body{
-  height:100vh;
-  background:#050c18;
+  background:#020817;
   color:#fff;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
   overflow:hidden;
 }
 
-/* TOP BAR */
+/* TOPBAR */
 .topbar{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
   display:flex;
   justify-content:space-between;
-  padding:10px;
-  z-index:50;
+  align-items:center;
+  padding:15px 20px;
+  z-index:2;
 }
 
-.btn{
-  padding:10px 14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,0.2);
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  color:white;
-  font-weight:600;
+.nav-btn{
+  padding:12px 22px;
+  border-radius:14px;
+  border:1px solid #00eaff;
+  color:#00eaff;
   cursor:pointer;
-  transition:0.3s;
 }
 
-.btn:hover{transform:scale(1.08);box-shadow:0 0 15px rgba(0,255,255,0.5)}
+.nav-btn.purple{
+  border-color:#c77dff;
+  color:#c77dff;
+}
+
+.nav-center{
+  padding:14px 40px;
+  border-radius:18px;
+  border:1px solid #00eaff;
+  box-shadow:0 0 25px #00eaff;
+  font-weight:800;
+}
 
 /* MENU */
 .menu{
-  position:absolute;
-  top:60px;
-  bottom:0;
-  left:0;
-  right:0;
+  flex:1;
   overflow-y:auto;
-  padding:15px;
   display:flex;
   flex-direction:column;
-  gap:15px;
+  gap:20px;
+  padding:20px;
 }
 
+/* CARD */
 .card{
-  border-radius:20px;
-  padding:18px;
+  width:100%;
+  min-height:200px;
+  border-radius:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:30px;
   position:relative;
   overflow:hidden;
   cursor:pointer;
@@ -65,120 +73,251 @@ body{
 }
 
 .card:hover{
-  transform:scale(1.02);
-  box-shadow:0 0 25px currentColor;
+  transform:scale(1.01);
+  box-shadow:0 0 80px currentColor;
 }
 
-.card::after{
+.card:active{
+  transform:scale(0.98);
+}
+
+/* SHINE EFFECT */
+.card::before{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.3),transparent);
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent);
   opacity:0;
+  transition:0.4s;
 }
 
-.card:hover::after{
+.card:hover::before{
   opacity:1;
-  animation:shine 1s;
 }
 
-@keyframes shine{
-  from{transform:translateX(-100%)}
-  to{transform:translateX(100%)}
+/* LEFT */
+.left{max-width:55%}
+
+.num{
+  font-size:42px;
+  font-weight:900;
+  opacity:0.9;
 }
 
-.title{font-size:18px;font-weight:700}
-.sub{font-size:13px;opacity:0.7;margin-top:5px}
+.dots{display:flex;gap:5px;margin-top:6px}
+.dots span{
+  width:6px;height:6px;background:currentColor;border-radius:50%;
+}
+
+.title{
+  font-size:28px;
+  font-weight:900;
+  margin-top:10px;
+}
+
+.desc{
+  font-size:15px;
+  opacity:0.7;
+  margin-top:8px;
+}
+
+/* BUTTON */
+.open{
+  margin-top:18px;
+  padding:10px 26px;
+  border-radius:30px;
+  border:2px solid currentColor;
+  background:transparent;
+  font-weight:700;
+  box-shadow:0 0 15px currentColor inset;
+  display:inline-block;
+}
+
+/* VISUAL */
+.visual{
+  width:220px;
+  height:220px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.visual img{
+  width:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 0 40px currentColor);
+}
+
+/* ARROW */
+.arrow{
+  position:absolute;
+  right:25px;
+  bottom:25px;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:2px solid currentColor;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
 
 /* COLORS */
-.c1{background:linear-gradient(135deg,#00c6ff,#0072ff)}
-.c2{background:linear-gradient(135deg,#ff00cc,#3333ff)}
-.c3{background:linear-gradient(135deg,#00ff99,#006600)}
-.c4{background:linear-gradient(135deg,#ff9900,#cc6600)}
-.c5{background:linear-gradient(135deg,#00ccff,#003366)}
+.c1{
+  background:
+  radial-gradient(circle at 80% 50%, rgba(0,255,255,0.25), transparent 60%),
+  linear-gradient(135deg,#021b2f,#003b5c);
+  color:#00eaff;
+}
+
+.c2{
+  background:
+  radial-gradient(circle at 80% 50%, rgba(255,0,255,0.25), transparent 60%),
+  linear-gradient(135deg,#1a0033,#3a0066);
+  color:#ff5cff;
+}
+
+.c3{
+  background:
+  radial-gradient(circle at 80% 50%, rgba(0,255,120,0.25), transparent 60%),
+  linear-gradient(135deg,#002b1c,#004d2e);
+  color:#00ff99;
+}
+
+.c4{
+  background:
+  radial-gradient(circle at 80% 50%, rgba(255,140,0,0.25), transparent 60%),
+  linear-gradient(135deg,#2b1400,#663300);
+  color:#ff9900;
+}
+
+.c5{
+  background:
+  radial-gradient(circle at 80% 50%, rgba(0,180,255,0.25), transparent 60%),
+  linear-gradient(135deg,#001a33,#003366);
+  color:#00ccff;
+}
 
 /* IFRAME */
 iframe{
   position:absolute;
-  top:60px;
+  top:0;
   left:0;
   width:100%;
-  height:calc(100% - 60px);
+  height:100%;
   border:none;
   display:none;
+  z-index:1;
 }
-
 </style>
 </head>
 
 <body>
 
+<!-- TOPBAR -->
 <div class="topbar">
-  <button class="btn" onclick="goBack()">← Geri</button>
-  <button class="btn" onclick="goHome()">🏠 Ana Menü</button>
+  <div class="nav-btn" onclick="goHome()">← GERİ</div>
+  <div class="nav-center">🏠 ANA MENÜ</div>
+  <div class="nav-btn purple">🏠 ANASAYFA</div>
 </div>
 
+<!-- MENU -->
 <div class="menu" id="menu">
 
-  <div class="card c1" onclick="openSite('https://bilaltektas.github.io/stok-miktarlari/')">
+<!-- CARD 1 -->
+<div class="card c1" onclick="openSite('https://bilaltektas.github.io/stok-miktarlari/')">
+  <div class="left">
+    <div class="num">01</div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
     <div class="title">STOK MİKTARLARI VE MAL KABUL</div>
-    <div class="sub">Stokları görüntüle ve mal kabul yap</div>
+    <div class="desc">Stok miktarlarını görüntüle ve mal kabul işlemlerini yap</div>
+    <div class="open">AÇ</div>
   </div>
+  <div class="visual">
+    <img src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png">
+  </div>
+  <div class="arrow">›</div>
+</div>
 
-  <div class="card c2" onclick="openSite('https://bilaltektas.github.io/recete_robotu/')">
+<!-- CARD 2 -->
+<div class="card c2" onclick="openSite('https://bilaltektas.github.io/recete_robotu/')">
+  <div class="left">
+    <div class="num">02</div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
     <div class="title">REÇETE SORGULAMA</div>
-    <div class="sub">Reçeteleri hızlıca analiz et</div>
+    <div class="desc">Reçeteleri hızlı ve kolay şekilde sorgula</div>
+    <div class="open">AÇ</div>
   </div>
+  <div class="visual">
+    <img src="https://cdn-icons-png.flaticon.com/512/4149/4149676.png">
+  </div>
+  <div class="arrow">›</div>
+</div>
 
-  <div class="card c3" onclick="openSite('https://bilaltektas.github.io/stok-kodu-asistan-/')">
+<!-- CARD 3 -->
+<div class="card c3" onclick="openSite('https://bilaltektas.github.io/stok-kodu-asistan-/')">
+  <div class="left">
+    <div class="num">03</div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
     <div class="title">STOK KODU ASİSTANI</div>
-    <div class="sub">Kodları sorgula ve detay gör</div>
+    <div class="desc">Stok kodlarını sorgula ve detaylı bilgilere ulaş</div>
+    <div class="open">AÇ</div>
   </div>
+  <div class="visual">
+    <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png">
+  </div>
+  <div class="arrow">›</div>
+</div>
 
-  <div class="card c4" onclick="openSite('https://bilaltektas.github.io/zaman-hesaplama/')">
-    <div class="title">ÇALIŞMA SÜRESİ</div>
-    <div class="sub">Süre hesapla ve raporla</div>
+<!-- CARD 4 -->
+<div class="card c4" onclick="openSite('https://bilaltektas.github.io/zaman-hesaplama/')">
+  <div class="left">
+    <div class="num">04</div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="title">ÇALIŞMA SÜRESİ HESAPLAMA</div>
+    <div class="desc">Çalışma süresini hesapla ve raporla</div>
+    <div class="open">AÇ</div>
   </div>
+  <div class="visual">
+    <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png">
+  </div>
+  <div class="arrow">›</div>
+</div>
 
-  <div class="card c5" onclick="openSite('https://bilaltektas.github.io/lot-no-asistan/')">
-    <div class="title">LOT EŞLEŞTİRME</div>
-    <div class="sub">Lot kontrol ve eşleşme</div>
+<!-- CARD 5 -->
+<div class="card c5" onclick="openSite('https://bilaltektas.github.io/lot-no-asistan/')">
+  <div class="left">
+    <div class="num">05</div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="title">LOT NUMARASI EŞLEŞTİRME</div>
+    <div class="desc">Lot numaralarını eşleştir ve kontrol et</div>
+    <div class="open">AÇ</div>
   </div>
+  <div class="visual">
+    <img src="https://cdn-icons-png.flaticon.com/512/2942/2942789.png">
+  </div>
+  <div class="arrow">›</div>
+</div>
 
 </div>
 
+<!-- IFRAME -->
 <iframe id="frame"></iframe>
 
 <script>
-let historyStack=[];
-
 function openSite(url){
   document.getElementById('menu').style.display='none';
-  const frame=document.getElementById('frame');
+  const frame = document.getElementById('frame');
   frame.style.display='block';
   frame.src=url;
-  historyStack.push(url);
 }
 
 function goHome(){
   document.getElementById('menu').style.display='flex';
-  const frame=document.getElementById('frame');
+  const frame = document.getElementById('frame');
   frame.style.display='none';
   frame.src='';
-  historyStack=[];
-}
-
-function goBack(){
-  const frame=document.getElementById('frame');
-
-  try{
-    frame.contentWindow.history.back();
-  }catch(e){
-    if(historyStack.length>1){
-      historyStack.pop();
-      frame.src=historyStack[historyStack.length-1];
-    }
-  }
 }
 </script>
 
